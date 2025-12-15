@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tab</title>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="componet">
+            <div x-data="tabs" class="tabs">
+                <div class="tabs__headers">
+                    <button
+                        :class="{ 'active': activeTab === 1 }"
+                        @click="activeTab = 1"
+                    >
+                        Home
+                    </button>
+                    <button
+                        :class="{ 'active': activeTab === 2 }"
+                        @click="activeTab = 2"
+                    >
+                        Profile
+                    </button>
+                    <button
+                        :class="{ 'active': activeTab === 3 }"
+                        @click="activeTab = 3"
+                    >
+                        Contact
+                    </button>
+                </div>
+
+                <div class="tabs__content" x-show="activeTab === 1">
+                    <p>This is the sample content for Home tab</p>
+                </div>
+                <div class="tabs__content" x-show="activeTab === 2">
+                    <p>This is the sample content forr Profile tab</p>
+                </div>
+                <div class="tabs__content" x-show="activeTab === 3">
+                    <p>This is the sample content for Contact tab</p>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener("alpine:init", () => {
+                    Alpine.data("tabs", () => ({
+                        activeTab: 1,
+                    }))
+                })
+            </script>
+        </div>
+    </body>
+</html>
