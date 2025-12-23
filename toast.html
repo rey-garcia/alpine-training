@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+        <link rel="stylesheet" href="style/toast.css" />
+
+        <title>Toast</title>
+    </head>
+    <body>
+        <div x-data="toast" class="toast__wrapper">
+            <button @click="toggle()">Show Toast</button>
+            <div class="toast" x-show="isOpen" x-transition>
+                <div class="toast__header">
+                    <span>Toast Alert</span>
+                </div>
+                <div class="toast__content">
+                    <p>Hello, this is a toast!</p>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("alpine:init", () => {
+                Alpine.data("toast", () => ({
+                    isOpen: false,
+
+                    toggle() {
+                        this.isOpen = true
+                        setTimeout(() => {
+                            this.isOpen = false
+                        }, 5000)
+                    },
+                }))
+            })
+        </script>
+    </body>
+</html>

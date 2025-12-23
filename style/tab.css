@@ -1,40 +1,3 @@
-.componet {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.accordion {
-    width: 400px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-.accordion__item {
-    border-top: 1px solid #ccc;
-}
-.accordion__header {
-    padding: 12px;
-    background: #f4f4f4;
-    cursor: pointer;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.icon {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.accordion__content {
-    padding: 12px;
-    display: none;
-    background: #fff;
-}
-
 /* Tab Style */
 .tabs {
     width: 400px;
@@ -73,7 +36,6 @@
     border-top: 1px solid #ccc;
     display: none;
 }
-
 [x-show] {
     display: block;
 }

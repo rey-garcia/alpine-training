@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+        <link rel="stylesheet" href="style/offcanvas.css" />
+
+        <title>Offcanvas</title>
+    </head>
+    <body>
+        <div
+            x-data="offcanvas('left')"
+            class="offcanvas"
+            :class="{ 'is-open': isOpen }"
+        >
+            <button @click="toggle()">Show Offcanvas</button>
+            <div
+                x-show="isOpen"
+                x-transition
+                @click.outside="isOpen = false"
+                class="offcanvas-panel"
+                :class="position"
+            >
+                Sample content
+            </div>
+            `
+        </div>
+        <script>
+            document.addEventListener("alpine:init", () => {
+                Alpine.data("offcanvas", (position = "right") => ({
+                    isOpen: false,
+                    position,
+                    toggle() {
+                        this.isOpen = !this.isOpen
+                    },
+                }))
+            })
+        </script>
+    </body>
+</html>
