@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Flip Animation</title>
+        <link rel="stylesheet" href="style/flip.css" />
+
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="row">
+                <div class="box-container">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
+                <div class="container"></div>
+            </div>
+
+            <div class="row">
+                <div class="box-container">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box" x-data="box({animate: true})">
+                        <img src="./images/service-bg-1.png" />
+                    </div>
+                    <div class="box"></div>
+                </div>
+                <div class="container"></div>
+            </div>
+
+            <div class="row">
+                <div class="box-container">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
+                <div class="container"></div>
+            </div>
+
+            <div class="row">
+                <div class="box-container">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
+                <div class="container"></div>
+            </div>
+
+            <div class="row">
+                <div class="box-container">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
+                <div class="container"></div>
+            </div>
+
+            <div class="row">
+                <div class="box-container">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box" x-data="box({animate: true})">
+                        <img src="./images/service-bg-1.png" />
+                    </div>
+                </div>
+                <div class="container"></div>
+            </div>
+            <div class="row">
+                <div class="box-container">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
+                <div class="container"></div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/Flip.min.js"></script>
+        <script>
+            document.addEventListener("alpine:init", () => {
+                gsap.registerPlugin(ScrollTrigger, Flip)
+
+                Alpine.data("box", (data = {}) => ({
+                    animate: data.animate ?? false,
+                    bgColor: data.bgColor ?? null,
+
+                    init() {
+                        if (this.bgColor) {
+                            this.$el.style.backgroundColor = this.bgColor
+                        }
+
+                        if (!this.animate) return
+
+                        const img = this.$el.querySelector("img")
+                        if (!img) return
+
+                        const row = this.$el.closest(".row")
+                        const container = row.querySelector(".container")
+
+                        ScrollTrigger.create({
+                            trigger: this.$el,
+                            start: "center center",
+                            once: true,
+
+                            onEnter: () => {
+                                const state = Flip.getState(img)
+
+                                container.append(img)
+
+                                Flip.from(state, {
+                                    duration: 1,
+                                    ease: "power1.inOut",
+                                    absolute: true,
+                                })
+                            },
+                        })
+                    },
+                }))
+            })
+        </script>
+    </body>
+</html>
